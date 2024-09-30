@@ -53,15 +53,22 @@ class Book extends Model
 
     private function dateRangeFilter(Builder $query, $from = null, $to = null)
     {
-        if($from && !$to)
-        {
+        // If only $from is provided
+        if ($from && !$to) {
             $query->where('created_at', '>=', $from);
-        }elseif(!$from && $to){
+        }
+        // If only $to is provided
+        elseif (!$from && $to) {
             $query->where('created_at', '<=', $to);
-        }else{
+        }
+        // If both $from and $to are provided
+        elseif ($from && $to) {
             $query->whereBetween('created_at', [$from, $to]);
         }
+        // If neither $from nor $to is provided, no filtering
+        return $query;
     }
+
 
     public function scopePopularLastMonth(Builder $query): Builder | QueryBuilder
     {

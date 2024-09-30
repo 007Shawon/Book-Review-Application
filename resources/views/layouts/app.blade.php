@@ -63,7 +63,8 @@
     {{-- blade-formatter-enable --}}
 </head>
 
-<body class="container mx-auto mt-10 mb-10 max-w-3xl">
+<body  class="container mx-auto mt-10 mb-10 max-w-3xl" style="background-image: url('/public/books.jpg');>
+
 @yield('content')
 </body>
 
